@@ -6,7 +6,7 @@ coll = db[ "permissions" ]
 map = <<EOF 
 
   function () {
-    emit(this.site, {});      
+    emit(this.site, {inc:7});      
   }
  
 EOF
@@ -17,7 +17,7 @@ reduce = <<EOF
 
     var res = {count:0, calls: 10};
     values.forEach( function (v) {
-      res.count += 1;
+      res.count += v.inc;
     } 
     );
     return res;
